@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jumbotron">
+    <h1>doctorBlog</h1>
+  </div>
+  {% if current_user.is_authenticated %}
+  <h1>Your history of medicines is hear</h1>
+  {% for post in posts.items %}
+  {% if current_user.username==post.author.username %}
+  <div>
+    
+    <div class="card-body">
+      <h2>{{post.patient_name}}</h2>
+      <h1>Written By the doctor:{{post.author.username}}</h1>
+      <p>Published on:{{post.date.strftime('%Y-%m-%d')}}</p>
+      <p class="card-text">Medicine prescribed is:{{post.medicine}} </p>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+  {% endif %}
+
+
+  {% endblock %}
