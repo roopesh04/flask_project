@@ -1,8 +1,8 @@
-"""first update
+"""update
 
-Revision ID: 62baec88f345
+Revision ID: 0fc40d1d0f32
 Revises: 
-Create Date: 2020-02-11 19:58:17.231026
+Create Date: 2020-02-22 12:15:37.900390
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '62baec88f345'
+revision = '0fc40d1d0f32'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('email', sa.String(length=64), nullable=True),
     sa.Column('username', sa.String(length=64), nullable=True),
     sa.Column('password_hash', sa.String(length=128), nullable=True),
+    sa.Column('license_key', sa.String(length=128), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
@@ -34,6 +35,11 @@ def upgrade():
     sa.Column('date', sa.DateTime(), nullable=False),
     sa.Column('patient_name', sa.String(length=140), nullable=False),
     sa.Column('medicine', sa.Text(), nullable=False),
+    sa.Column('description', sa.Text(), nullable=False),
+    sa.Column('allergy', sa.Text(), nullable=False),
+    sa.Column('morning', sa.Integer(), nullable=True),
+    sa.Column('afternoon', sa.Integer(), nullable=True),
+    sa.Column('evening', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

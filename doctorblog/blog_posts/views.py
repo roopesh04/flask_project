@@ -16,7 +16,13 @@ def create_post():
     if form.validate_on_submit():
         medicine=Medicine(patient_name=form.patient_name.data,
                                 medicine=form.medicine.data,
-                                user_id=current_user.id)
+                                user_id=current_user.id,
+                                description=form.description.data,
+                                allergy=form.allergy.data,
+                                morning=form.morning.data,
+                                afternoon=form.afternoon.data,
+                                evening=form.evening.data
+                                )
         db.session.add(medicine)
         db.session.commit()
         return redirect(url_for('core.index'))

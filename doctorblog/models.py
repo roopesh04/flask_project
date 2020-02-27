@@ -17,13 +17,14 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(64),unique=True,index=True)
     username = db.Column(db.String(64),unique=True,index=True)
     password_hash = db.Column(db.String(128))
-
+    license_key=db.Column(db.String(128))
     posts = db.relationship('Medicine',backref='author',lazy=True)
 
-    def __init__(self,email,username,password):
+    def __init__(self,email,username,password,license_key):
         self.email = email
         self.username = username
         self.password_hash = generate_password_hash(password)
+        self.license_key=license_key
 
     def check_password(self,password):
         return check_password_hash(self.password_hash,password)
@@ -42,11 +43,23 @@ class Medicine(db.Model):
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     patient_name = db.Column(db.String(140),nullable=False)
     medicine = db.Column(db.Text,nullable=False)
+    description=db.Column(db.Text,nullable=False)
+    allergy=db.Column(db.Text,nullable=False)
+    morning=db.Column(db.Integer)
+    afternoon=db.Column(db.Integer)
+    evening=db.Column(db.Integer)
 
-    def __init__(self,patient_name,medicine,user_id):
+    def __init__(self,patient_name,medicine,user_id,description,allergy,
+                                morning,afternoon,evening):
         self.patient_name=patient_name
         self.medicine=medicine
         self.user_id = user_id
+        self.description=description
+        self.allergy=allergy
+        self.morning=morning
+        self.afternoon=afternoon
+        self.evening=evening
+        
 
     def __repr__(self):
         return f"Post ID: {self.id} -- Date: {self.date} --- {self.patient_name}"
