@@ -16,24 +16,8 @@
       <p class="card-text">Medicine prescribed is:{{post.medicine}} </p>
       <p class="card-text">Description :{{post.description}}</p>
       <p class="card-text">Allergy :{{post.allergy}}</p>
-      {% if post.morning %}
-      <p class="card-text">Take morning</p>
-      {% else %}
-      <p class="card-text">Don't take morning</p>
-      {% endif %}
-
-      {% if post.afternoon %}
-      <p class="card-text">Take afternoon</p>
-      {% else %}
-      <p class="card-text">Don't take afternoon</p>
-      {% endif %}
-
-      {% if post.evening %}
-      <p class="card-text">Take evening</p>
-      {% else %}
-      <p class="card-text">Don't take evening</p>
-      {% endif %}
-      <img src="{{ qrcode("http://192.168.43.129:5000/get_data/"+post.patient_name)}}" alt="">
+      <p class="card-text"> Timing : {{post.timing}}</p>
+      <img src="{{ qrcode("http://127.0.0.1:5000/get_data/"+post.patient_name)}}" alt="">
     </div>
   </div>
   

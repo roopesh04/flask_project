@@ -9,7 +9,5 @@ class postform(FlaskForm):
     medicine=TextAreaField("Medicine name",validators=[DataRequired()])
     description=TextAreaField("Description of the problem",validators=[DataRequired()])
     allergy=TextAreaField("Allergy due to the problem",validators=[DataRequired()])
-    morning=BooleanField("Does it required to take medicine on morning?")
-    afternoon=BooleanField("Does it required to take medicine on afternoon?")
-    evening=BooleanField("Does it required to take medicine on evening?")
+    timing=TextAreaField("Timing in which the medecine should be taken",validators=[DataRequired()])
     submit=SubmitField("Post the medicine")

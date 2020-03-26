@@ -19,9 +19,7 @@ def create_post():
                                 user_id=current_user.id,
                                 description=form.description.data,
                                 allergy=form.allergy.data,
-                                morning=form.morning.data,
-                                afternoon=form.afternoon.data,
-                                evening=form.evening.data
+                                timing=form.timing.data
                                 )
         db.session.add(medicine)
         db.session.commit()

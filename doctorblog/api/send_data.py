@@ -14,20 +14,29 @@ def return_data(name_of_patient):
     i=0
     for post in patients:
         if post.patient_name==name_of_patient:
+            medicines=post.medicine
+            list_of_medicines=medicines.split(',')
+            c={}
+            time=post.timing
+            list_of_timing=time.split(',')
+            d={}
+            for k in range(0,len(list_of_medicines)):
+                c[k]=list_of_medicines[k]
+            for k in range(0,len(list_of_timing)):
+                d[k]=list_of_timing[k]
             i=i+1
 #            a[i]=[post.author.username,post.medicine,post]
             b={}
             b["doctor_name"]=post.author.username
-            b["medicine_name"]=post.medicine
+            b["medicine_name"]=c
+            b["number_of_medicines"]=len(list_of_medicines)
             b["description"]=post.description
             b["allergy_data"]=post.allergy
-            b["morning"]=post.morning
-            b['afternoon']=post.afternoon
-            b['evening']=post.evening
+            b["timing"]=d
             a[i]=b
         a[0]=i
     return a
 
-@data.route('/get_data/<string:name>',methods=['GET'])
-def get_data(name):
+@data.route('/get_data/<string:name>/<string:name2>',methods=['GET'])
+def get_data(name,name2):
     return jsonify(return_data(name))

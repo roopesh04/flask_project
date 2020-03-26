@@ -45,20 +45,16 @@ class Medicine(db.Model):
     medicine = db.Column(db.Text,nullable=False)
     description=db.Column(db.Text,nullable=False)
     allergy=db.Column(db.Text,nullable=False)
-    morning=db.Column(db.Integer)
-    afternoon=db.Column(db.Integer)
-    evening=db.Column(db.Integer)
+    timing=db.Column(db.Text,nullable=False)
 
     def __init__(self,patient_name,medicine,user_id,description,allergy,
-                                morning,afternoon,evening):
+                                timing):
         self.patient_name=patient_name
         self.medicine=medicine
         self.user_id = user_id
         self.description=description
         self.allergy=allergy
-        self.morning=morning
-        self.afternoon=afternoon
-        self.evening=evening
+        self.timing=timing
         
 
     def __repr__(self):
