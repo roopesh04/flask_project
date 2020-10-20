@@ -1,4 +1,4 @@
-from doctorblog import app
+from doctorblog import app 
 
 if __name__ == '__main__':
     app.run(debug=True)
